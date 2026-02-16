@@ -1,3 +1,4 @@
+import java.util.Scanner;
 class Node
 {
     int data;
@@ -8,7 +9,7 @@ class Node
         this.next = null;
     }
 }
-public class Main
+public class ReverseLinkedList
 {
     public static Node reverse(Node head)
     {
@@ -34,11 +35,26 @@ public class Main
     }
     public static void main(String[] args)
     {
-        Node head = new Node(1);
-        head.next = new Node(2);
-        head.next.next = new Node(3);
-        head.next.next.next = new Node(4);
-        head.next.next.next.next = new Node(5);
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        String[] values = input.split(" ");
+        Node head = null;
+        Node temp = null;
+        for (String v : values)
+        {
+            int num = Integer.parseInt(v);
+            Node newNode = new Node(num);
+            if (head == null)
+            {
+                head = newNode;
+                temp = head;
+            }
+            else
+            {
+                temp.next = newNode;
+                temp = newNode;
+            }
+        }
         head = reverse(head);
         printList(head);
     }
