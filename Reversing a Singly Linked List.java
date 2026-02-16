@@ -9,7 +9,7 @@ class Node
         this.next = null;
     }
 }
-public class ReverseLinkedList
+public class Main
 {
     public static Node reverse(Node head)
     {
