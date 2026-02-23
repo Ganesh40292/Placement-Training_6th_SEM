@@ -1,0 +1,84 @@
+package com;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class LevelOrderLeftView
+{
+    Node root;
+
+    void levelOrder()
+    {
+        if (root == null)
+        {
+            System.out.println("Tree is empty");
+            return;
+        }
+
+        System.out.println("Level Order Traversal:");
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty())
+        {
+            Node current = queue.poll();
+            System.out.print(current.data + " ");
+
+            if (current.left != null)
+                queue.add(current.left);
+
+            if (current.right != null)
+                queue.add(current.right);
+        }
+        System.out.println();
+    }
+
+    void leftView()
+    {
+        if (root == null)
+        {
+            System.out.println("Tree is empty");
+            return;
+        }
+
+        System.out.println("Left View of Tree:");
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty())
+        {
+            int size = queue.size();
+
+            for (int i = 1; i <= size; i++)
+            {
+                Node current = queue.poll();
+
+                if (i == 1)
+                    System.out.print(current.data + " ");
+
+                if (current.left != null)
+                    queue.add(current.left);
+
+                if (current.right != null)
+                    queue.add(current.right);
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args)
+    {
+        LevelOrderLeftView tree = new LevelOrderLeftView();
+
+        System.out.println("Creating Binary Tree...");
+
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.right = new Node(6);
+
+        tree.levelOrder();
+        tree.leftView();
+    }
+}
